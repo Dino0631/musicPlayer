@@ -1,5 +1,5 @@
 import os
-add_library('sound')
+# add_library('sound')
 
 
 cwd = os.getcwd()
@@ -7,7 +7,7 @@ music_path = 'music'
 fps = 60 #fps the game runs at
 
 #time before mouse down is a hold
-#if released before this time is up, it counts as a click
+#if released before self time is up, it counts as a click
 mouseClickTime = 0.1
 keyPressTime = 0.2
 
@@ -23,7 +23,7 @@ class Key:
     assoc = ''
     time = 0 #in seconds, max 1 second
     holdThreshold = 0
-    def Key(assoc='', MorKB='k'):    #m for mouse button, k for key
+    def __init__(self, assoc='', MorKB=''):    #m for mouse button, k for key
         if MorKB=='m':
             holdThreshold = mouseClickTime
         elif MorKB=='k':
@@ -40,17 +40,17 @@ class Key:
         return a/fps
     
     def holding():
-        return this.pressedFor()>holdThreshold
+        return self.pressedFor()>holdThreshold
     
     def clicking(): 
-        timePressed = this.pressedFor(1)
+        timePressed = self.pressedFor(1)
         #System.out.prln(timepressed)
         #System.out.prln(timepressed>0)
-        return timePressed<=holdThreshold and timePressed>0.0 and not this.pressed[0]
+        return timePressed<=holdThreshold and timePressed>0.0 and not self.pressed[0]
    
     def update(p):
-        this.pressed.insert(0, p)
-        this.pressed.pop()
+        self.pressed.insert(0, p)
+        self.pressed.pop()
    
 mouseLeft = Key('mouseLeft', 'm')
 mouseRight = Key('mouseRight', 'm')
